@@ -42,6 +42,7 @@ const GROUPS = [
       { id: 'compendium', name: 'Destiny Data Compendium', url: 'https://docs.google.com/spreadsheets/d/1WaxvbLx7UoSZaBqdFr1u32F2uWVLo-CJunJB4nlGUE4' },
       { id: 'aegis', name: 'Aegis Damage Spreadsheet', url: 'https://docs.google.com/spreadsheets/d/1_5wtBjRYHHxuF4oJKDb_iOGZs-wTkzB6RYbnyNLbuz4' },
       { id: 'buffs', name: 'Court\'s Damage Buffs/Debuffs', url: 'https://docs.google.com/spreadsheets/d/1i1KUwgVkd8qhwYj481gkV9sZNJQCE-C3Q-dpQutPCi4' },
+      { id: 'legendary', name: 'SaxPlaysGames\' Loot Sources', url: 'https://docs.google.com/spreadsheets/d/1WDj-vExf9c982PVc1nRRfjadhkcZFqa7nv14cCMI8C8'},
       { id: 'cosmetics', name: 'Squid\'s Destiny 2 Cosmetics', url: 'https://docs.google.com/spreadsheets/d/1IzXFe_QyYs1SNh07ahm_nklql5V9W0blkFA7SeN4kTs'}
     ],
   },
@@ -58,7 +59,7 @@ const GROUPS = [
 ];
 
 module.exports = {
-  VERSION: '1.0.2',
+  VERSION: '1.0.3',
   GITHUB_REPO: 'https://github.com/itznao/mida',
 
   GROUPS,

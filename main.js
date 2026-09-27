@@ -21,6 +21,7 @@ app.whenReady().then(() => {
 
   const win = createWindow();
   const tabs = createTabs(win);
+  
   setupMenu(win, tabs);
   setupAccount(win, tabs);
   setupHotkey(win);
