@@ -11,6 +11,18 @@ const SHORTCUTS = [
     keys: ['Shift+F5', 'Ctrl+Shift+R'],
     run: (contents) => contents.reloadIgnoringCache(),
   },
+  {
+    keys: ['Ctrl+=', 'Ctrl++', 'Ctrl+Shift+=', 'Ctrl+Shift++'],
+    run: (contents) => contents.setZoomLevel(contents.getZoomLevel() + 0.5),
+  },
+  {
+    keys: ['Ctrl+-', 'Ctrl+_', 'Ctrl+Shift+-', 'Ctrl+Shift+_'],
+    run: (contents) => contents.setZoomLevel(contents.getZoomLevel() - 0.5),
+  },
+  {
+    keys: ['Ctrl+0', 'Ctrl+Shift+0'],
+    run: (contents) => contents.setZoomLevel(0),
+  },
 ];
 
 const comboOf = (input) => [
