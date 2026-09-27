@@ -59,7 +59,7 @@ const GROUPS = [
 ];
 
 module.exports = {
-  VERSION: '1.0.3',
+  VERSION: '1.0.4',
   GITHUB_REPO: 'https://github.com/itznao/mida',
 
   GROUPS,
