@@ -1,6 +1,6 @@
-const { ipcMain } = require('electron');
-const { SIDEBAR_WIDTH, ANIMATION_MS } = require('./config');
-const { animate, easeOut } = require('./animate');
+const { ipcMain } = require("electron");
+const { SIDEBAR_WIDTH, ANIMATION_MS } = require("./config");
+const { animate, easeOut } = require("./animate");
 
 function setupMenu(win, tabs) {
   let open = true;
@@ -8,7 +8,7 @@ function setupMenu(win, tabs) {
 
   const toggle = () => {
     open = !open;
-    win.webContents.send('menu', open);
+    win.webContents.send("menu", open);
 
     const from = tabs.left();
     const to = open ? SIDEBAR_WIDTH : 0;
@@ -21,7 +21,7 @@ function setupMenu(win, tabs) {
     else tabs.current()?.webContents.focus();
   };
 
-  ipcMain.on('toggle-menu', toggle);
+  ipcMain.on("toggle-menu", toggle);
 }
 
 module.exports = { setupMenu };

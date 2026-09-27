@@ -1,7 +1,11 @@
-const { VERSION, GITHUB_REPO } = require('./config');
-const { showToast } = require('./toast');
+const { VERSION, GITHUB_REPO } = require("./config");
+const { showToast } = require("./toast");
 
-const versionParts = (version) => version.replace(/^v/i, '').split('.').map((part) => parseInt(part, 10) || 0);
+const versionParts = (version) =>
+  version
+    .replace(/^v/i, "")
+    .split(".")
+    .map((part) => parseInt(part, 10) || 0);
 
 function isNewer(latest, current) {
   const a = versionParts(latest);
@@ -16,14 +20,20 @@ function isNewer(latest, current) {
 async function checkForUpdate(win) {
   if (!GITHUB_REPO) return;
   try {
-    const response = await fetch(`${GITHUB_REPO.replace('https://github.com/', 'https://api.github.com/repos/')}/releases/latest`);
+    const response = await fetch(
+      `${GITHUB_REPO.replace("https://github.com/", "https://api.github.com/repos/")}/releases/latest`,
+    );
     if (!response.ok) return;
     const { tag_name: latest } = await response.json();
     if (latest && isNewer(latest, VERSION)) {
-      showToast(win, `MIDA ${latest} is out.`, `${GITHUB_REPO}/releases/latest`);
+      showToast(
+        win,
+        `MIDA ${latest} is out.`,
+        `${GITHUB_REPO}/releases/latest`,
+      );
     }
   } catch (err) {
-    console.log('[update] check failed:', err.message);
+    console.log("[update] check failed:", err.message);
   }
 }
 

@@ -1,46 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="color-scheme" content="dark">
-  <title>MIDA - The Destiny 2 Multi-Tool</title>
-  <link rel="stylesheet" href="compiled.css">
-  <script>
-    for (const [name, pixels] of new URLSearchParams(location.search)) {
-      document.documentElement.style.setProperty(`--${name}`, `${pixels}px`);
-    }
-  </script>
-  <link rel="stylesheet" href="index.css">
-</head>
-<body class="flex flex-col h-screen text-md">
-  <header class="flex items-center shrink-0 pl-4 border-b-2 border-secondary select-none" style="-webkit-app-region: drag">
-    <div class="group flex items-center" style="-webkit-app-region: no-drag">
-      <img src="icon.png" alt="" class="w-5 h-5 mr-1">
-      <div class="flex items-baseline">
-        <button onclick="mida.toggleMenu()" class="text-slate-100 text-shadow-lg hover:text-slate-400 hover:cursor-pointer">MIDA</button>
-        <span id="version" class="ml-2 text-[8px] text-slate-500 font-bold slide-out"></span>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <title>MIDA - The Destiny 2 Multi-Tool</title>
+    <link rel="stylesheet" href="compiled.css" />
+    <script>
+      for (const [name, pixels] of new URLSearchParams(location.search)) {
+        document.documentElement.style.setProperty(`--${name}`, `${pixels}px`);
+      }
+    </script>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body class="flex flex-col h-screen text-md">
+    <header
+      class="flex items-center shrink-0 pl-4 border-b-2 border-secondary select-none"
+      style="-webkit-app-region: drag"
+    >
+      <div class="group flex items-center" style="-webkit-app-region: no-drag">
+        <img src="icon.png" alt="" class="w-5 h-5 mr-1" />
+        <div class="flex items-baseline">
+          <button
+            onclick="mida.toggleMenu()"
+            class="text-slate-100 text-shadow-lg hover:text-slate-400 hover:cursor-pointer"
+          >
+            MIDA
+          </button>
+          <span
+            id="version"
+            class="ml-2 text-[8px] text-slate-500 font-bold slide-out"
+          ></span>
+        </div>
       </div>
-    </div>
-    <div class="flex h-full ml-auto" style="-webkit-app-region: no-drag">
-      <button onclick="mida.minimize()" class="w-11 grid place-items-center text-slate-300 hover:text-slate-400">
-        <svg class="block w-3 h-3" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6h8"/></svg>
-      </button>
-      <button id="maximize" onclick="mida.maximize()" class="w-11 grid place-items-center text-slate-300 hover:text-slate-400">
-        <svg class="block w-3 h-3 overflow-visible" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none"><path class="back-square" d="M5 -0.5H12.5V7" stroke-width="1.5"/><rect x="2" y="2" width="8" height="8" rx="1"/></svg>
-      </button>
-      <button onclick="mida.close()" class="w-11 grid place-items-center text-slate-300 hover:text-slate-400">
-        <svg class="block w-3 h-3" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 2l8 8M10 2l-8 8"/></svg>
-      </button>
-    </div>
-  </header>
+      <div class="flex h-full ml-auto" style="-webkit-app-region: no-drag">
+        <button
+          onclick="mida.minimize()"
+          class="w-11 grid place-items-center text-slate-300 hover:text-slate-400"
+        >
+          <svg
+            class="block w-3 h-3"
+            viewBox="0 0 12 12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M2 6h8" />
+          </svg>
+        </button>
+        <button
+          id="maximize"
+          onclick="mida.maximize()"
+          class="w-11 grid place-items-center text-slate-300 hover:text-slate-400"
+        >
+          <svg
+            class="block w-3 h-3 overflow-visible"
+            viewBox="0 0 12 12"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+          >
+            <path class="back-square" d="M5 -0.5H12.5V7" stroke-width="1.5" />
+            <rect x="2" y="2" width="8" height="8" rx="1" />
+          </svg>
+        </button>
+        <button
+          onclick="mida.close()"
+          class="w-11 grid place-items-center text-slate-300 hover:text-slate-400"
+        >
+          <svg
+            class="block w-3 h-3"
+            viewBox="0 0 12 12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M2 2l8 8M10 2l-8 8" />
+          </svg>
+        </button>
+      </div>
+    </header>
 
-  <aside id="menu" class="flex flex-col flex-1 min-h-0 overflow-y-auto border-secondary">
-    <nav id="tools" class="flex flex-col gap-2 flex-1 py-2"></nav>
-    <div class="sticky bottom-0 bg-secondary flex flex-col">
-      <button id="auth" class="m-4 py-3 px-4 text-white hover:text-slate-200 border border-accent-text bg-accent text-center text-shadow-lg hover:cursor-pointer hover-frame">Sign In</button>
-    </div>
-  </aside>
+    <aside
+      id="menu"
+      class="flex flex-col flex-1 min-h-0 overflow-y-auto border-secondary"
+    >
+      <nav id="tools" class="flex flex-col gap-2 flex-1 py-2"></nav>
+      <div class="sticky bottom-0 bg-secondary flex flex-col">
+        <button
+          id="auth"
+          class="m-4 py-3 px-4 text-white hover:text-slate-200 border border-accent-text bg-accent text-center text-shadow-lg hover:cursor-pointer hover-frame"
+        >
+          Sign In
+        </button>
+      </div>
+    </aside>
 
-  <script src="index.js"></script>
-</body>
+    <script src="index.js"></script>
+  </body>
 </html>

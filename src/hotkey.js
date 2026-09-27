@@ -1,7 +1,7 @@
-const { app, globalShortcut } = require('electron');
-const { HOTKEY, ANIMATION_MS } = require('./config');
-const { setTaskbar, restoreTaskbarOnExit } = require('./taskbar');
-const { animate } = require('./animate');
+const { app, globalShortcut } = require("electron");
+const { HOTKEY, ANIMATION_MS } = require("./config");
+const { setTaskbar, restoreTaskbarOnExit } = require("./taskbar");
+const { animate } = require("./animate");
 
 function setupHotkey(win) {
   let stopFade = () => {};
@@ -10,9 +10,14 @@ function setupHotkey(win) {
   const fade = (to, onDone) => {
     const from = win.getOpacity();
     stopFade();
-    stopFade = animate(win, ANIMATION_MS, (progress) => {
-      win.setOpacity(from + (to - from) * progress);
-    }, onDone);
+    stopFade = animate(
+      win,
+      ANIMATION_MS,
+      (progress) => {
+        win.setOpacity(from + (to - from) * progress);
+      },
+      onDone,
+    );
   };
 
   const bringToFront = () => {
@@ -42,12 +47,12 @@ function setupHotkey(win) {
   };
 
   restoreTaskbarOnExit();
-  win.on('blur', () => setTaskbar(true));
+  win.on("blur", () => setTaskbar(true));
 
   if (!globalShortcut.register(HOTKEY, toggle)) {
     console.log(`[hotkey] ${HOTKEY} is already taken by another app`);
   }
-  app.on('will-quit', () => globalShortcut.unregisterAll());
+  app.on("will-quit", () => globalShortcut.unregisterAll());
 }
 
 module.exports = { setupHotkey };
