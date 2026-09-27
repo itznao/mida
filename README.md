@@ -3,16 +3,9 @@
 The Destiny 2 Multi-Tool. MIDA puts Bungie.net, DIM, light.gg, raid.report and other Destiny 2 sites in one window, with one shared Bungie.net sign-in.
 
 ## Screenshots
-
-### MIDA dashboard
-
 ![image1](image1)
 
-### Inventory and gear view
-
 ![image2](image2)
-
-### Browser and site overview
 
 ![image3](image3)
 
