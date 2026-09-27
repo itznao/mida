@@ -6,6 +6,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1400,
     height: 900,
+    show: false,
     frame: false,
     backgroundColor: MAIN_BG,
     icon: path.join(__dirname, '..', 'web', 'icon.png'),
@@ -15,6 +16,7 @@ function createWindow() {
   win.loadFile(path.join(__dirname, '..', 'web', 'index.html'), {
     query: { 'sidebar-width': SIDEBAR_WIDTH, 'titlebar-height': TITLEBAR_HEIGHT },
   });
+  win.once('ready-to-show', () => win.show());
 
   const actions = {
     minimize: () => win.minimize(),
