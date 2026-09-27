@@ -2,13 +2,6 @@
 
 The Destiny 2 Multi-Tool. MIDA puts Bungie.net, DIM, light.gg, raid.report and other Destiny 2 sites in one window, with one shared Bungie.net sign-in.
 
-## Screenshots
-![image1](image1)
-
-![image2](image2)
-
-![image3](image3)
-
 ## Features
 
 - All your Destiny 2 sites in one sidebar.
@@ -17,6 +10,13 @@ The Destiny 2 Multi-Tool. MIDA puts Bungie.net, DIM, light.gg, raid.report and o
 - **Esc** goes back a page. **F5** or **Ctrl+R** reloads.
 - Hidden sites close after 30 seconds to save memory.
 - Shows a message when a new version is out.
+
+## Screenshots
+![image1](image1.png)
+
+![image2](image2.png)
+
+![image3](image3.png)
 
 ## Download
 
