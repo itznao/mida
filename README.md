@@ -2,6 +2,20 @@
 
 The Destiny 2 Multi-Tool. MIDA puts Bungie.net, DIM, light.gg, raid.report and other Destiny 2 sites in one window, with one shared Bungie.net sign-in.
 
+## Screenshots
+
+### MIDA dashboard
+
+![image1](image1)
+
+### Inventory and gear view
+
+![image2](image2)
+
+### Browser and site overview
+
+![image3](image3)
+
 ## Features
 
 - All your Destiny 2 sites in one sidebar.
@@ -30,6 +44,6 @@ Everything is in `%LOCALAPPDATA%\MIDA`. **Sign Out** deletes the saved site data
 
 ## License
 
-MIDA is **source-available, not open source**. You may read the code, build it and use it for yourself. You may **not** share, redistribute or publish MIDA or a changed version of it. See [LICENSE](LICENSE) (PolyForm Strict 1.0.0 with a contribution permission).
+MIDA is **source-available, not open source**. You may read the code, build it and use it for yourself. You may **not** share, redistribute or publish MIDA or a changed version of it. See [LICENSE](LICENSE).
 
 To contribute, see [CONTRIBUTING.md](CONTRIBUTING.md).
