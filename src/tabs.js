@@ -1,7 +1,14 @@
-const { ipcMain } = require('electron');
-const { GROUPS, TOOLS, SIGN_IN_URL, SIDEBAR_WIDTH, TITLEBAR_HEIGHT, UNLOAD_HIDDEN_AFTER } = require('./config');
-const { createView } = require('./view');
-const { handleShortcut } = require('./shortcuts');
+const { ipcMain } = require("electron");
+const {
+  GROUPS,
+  TOOLS,
+  SIGN_IN_URL,
+  SIDEBAR_WIDTH,
+  TITLEBAR_HEIGHT,
+  UNLOAD_HIDDEN_AFTER,
+} = require("./config");
+const { createView } = require("./view");
+const { handleShortcut } = require("./shortcuts");
 
 const homeUrls = {
   ...Object.fromEntries(TOOLS.map((tool) => [tool.id, tool.url])),
@@ -17,7 +24,8 @@ function createTabs(win) {
 
   const layout = () => {
     const [width, height] = win.getContentSize();
-    for (const [id, view] of Object.entries(views)) view.setVisible(id === active);
+    for (const [id, view] of Object.entries(views))
+      view.setVisible(id === active);
 
     views[active]?.setBounds({
       x: left,
@@ -25,6 +33,16 @@ function createTabs(win) {
       width: width - left,
       height: height - TITLEBAR_HEIGHT,
     });
+  };
+
+  const forgetTab = (id, view) => {
+    if (views[id] !== view) return;
+
+    clearTimeout(unloadTimers[id]);
+    delete views[id];
+
+    if (!win.isDestroyed()) win.contentView.removeChildView(view);
+    if (id === active) setImmediate(() => !win.isDestroyed() && show(id));
   };
 
   const open = (id, url) => {
@@ -37,6 +55,7 @@ function createTabs(win) {
     delete lastUrls[id];
     views[id] = view;
     win.contentView.addChildView(view, 0);
+    view.webContents.once("destroyed", () => forgetTab(id, view));
     return view;
   };
 
@@ -46,9 +65,9 @@ function createTabs(win) {
     if (view.webContents.isCurrentlyAudible()) return scheduleUnload(id);
 
     lastUrls[id] = view.webContents.getURL();
+    delete views[id];
     win.contentView.removeChildView(view);
     view.webContents.close();
-    delete views[id];
   };
 
   const scheduleUnload = (id) => {
@@ -64,35 +83,45 @@ function createTabs(win) {
     active = id;
     const view = open(id, url);
     layout();
-    win.webContents.send('active-tab', id);
+    win.webContents.send("active-tab", id);
     if (left === 0) view.webContents.focus();
   };
 
-  const blankAll = () => Promise.all(Object.values(views).map((view) => Promise.race([
-    view.webContents.loadURL('about:blank').catch(() => {}),
-    new Promise((resolve) => setTimeout(resolve, 2000)),
-  ])));
+  const blankAll = () =>
+    Promise.all(
+      Object.values(views).map((view) =>
+        Promise.race([
+          view.webContents.loadURL("about:blank").catch(() => {}),
+          new Promise((resolve) => setTimeout(resolve, 2000)),
+        ]),
+      ),
+    );
 
   const reloadAll = () => {
     lastUrls = {};
 
     for (const [id, view] of Object.entries(views)) {
-      view.webContents.loadURL(homeUrls[id])
+      view.webContents
+        .loadURL(homeUrls[id])
         .catch(() => {})
         .finally(() => view.webContents?.navigationHistory.clear());
     }
   };
 
-  win.on('resize', layout);
-  win.on('minimize', () => Object.keys(views).forEach(unload));
-  win.webContents.on('before-input-event', (event, input) => handleShortcut(views[active]?.webContents, event, input));
+  win.on("resize", layout);
+  win.on("minimize", () => Object.keys(views).forEach(unload));
+  win.webContents.on("before-input-event", (event, input) =>
+    handleShortcut(views[active]?.webContents, event, input),
+  );
 
-  ipcMain.handle('tools', () => GROUPS.map((group) => ({
-    name: group.name,
-    tools: group.tools.map(({ id, name }) => ({ id, name })),
-  })));
-  ipcMain.on('show', (_event, id) => show(id));
-  ipcMain.handle('active-tab', () => active);
+  ipcMain.handle("tools", () =>
+    GROUPS.map((group) => ({
+      name: group.name,
+      tools: group.tools.map(({ id, name }) => ({ id, name })),
+    })),
+  );
+  ipcMain.on("show", (_event, id) => show(id));
+  ipcMain.handle("active-tab", () => active);
 
   return {
     show,

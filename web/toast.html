@@ -1,34 +1,63 @@
-<main class="relative w-80 py-3 px-4 pr-12 text-sm bg-surface border-1 border-accent-text shadow-lg m-8">
-    <link rel="stylesheet" href="compiled.css">
-    <style>
-        main { opacity: 0; transition: opacity 200ms; }
-        main.in { opacity: 1; }
-    </style>
-    <p class="font-bold text-accent-text">MIDA</p>
-    <p class="text-slate-300">
-        <span id="msg"></span>
-        <span id="link" hidden>Click <a href="#" onclick="mida.openLink()" class="text-accent-text underline hover:text-slate-100">here</a> to check it out.</span>
-    </p>
-    <button onclick="closeToast()"
-        class="absolute top-1/2 -translate-y-1/2 right-6 p-1.5 text-slate-300 hover:text-slate-400">
-        <svg class="block w-3 h-3" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <path d="M2 2l8 8M10 2l-8 8" />
-        </svg>
-    </button>
-    <script>
-        const params = new URLSearchParams(location.search);
-        const main = document.querySelector('main');
-        document.getElementById('msg').textContent = params.get('msg');
-        document.getElementById('link').hidden = !params.get('link');
+<main
+  class="relative w-80 py-3 px-4 pr-12 text-sm bg-surface border-1 border-accent-text shadow-lg m-8"
+>
+  <link rel="stylesheet" href="compiled.css" />
+  <style>
+    main {
+      opacity: 0;
+      transition: opacity 200ms;
+    }
+    main.in {
+      opacity: 1;
+    }
+  </style>
+  <p class="font-bold text-accent-text">MIDA</p>
+  <p class="text-slate-300">
+    <span id="msg"></span>
+    <span id="link" hidden
+      >Click
+      <a
+        href="#"
+        onclick="mida.openLink()"
+        class="text-accent-text underline hover:text-slate-100"
+        >here</a
+      >
+      to check it out.</span
+    >
+  </p>
+  <button
+    onclick="closeToast()"
+    class="absolute top-1/2 -translate-y-1/2 right-6 p-1.5 text-slate-300 hover:text-slate-400"
+  >
+    <svg
+      class="block w-3 h-3"
+      viewBox="0 0 12 12"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+    >
+      <path d="M2 2l8 8M10 2l-8 8" />
+    </svg>
+  </button>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const main = document.querySelector("main");
+    document.getElementById("msg").textContent = params.get("msg");
+    document.getElementById("link").hidden = !params.get("link");
 
-        const box = main.getBoundingClientRect();
-        mida.toastSize({ width: Math.ceil(box.right + box.left), height: Math.ceil(box.bottom + box.top) });
-        requestAnimationFrame(() => requestAnimationFrame(() => main.classList.add('in')));
+    const box = main.getBoundingClientRect();
+    mida.toastSize({
+      width: Math.ceil(box.right + box.left),
+      height: Math.ceil(box.bottom + box.top),
+    });
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => main.classList.add("in")),
+    );
 
-        const closeToast = () => {
-            main.classList.remove('in');
-            setTimeout(mida.closeToast, 200);
-        };
-        setTimeout(closeToast, Number(params.get('ms')));
-    </script>
+    const closeToast = () => {
+      main.classList.remove("in");
+      setTimeout(mida.closeToast, 200);
+    };
+    setTimeout(closeToast, Number(params.get("ms")));
+  </script>
 </main>
