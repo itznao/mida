@@ -145,7 +145,7 @@ const GROUPS = [
 ];
 
 module.exports = {
-  VERSION: "1.0.5",
+  VERSION: "1.0.6",
   GITHUB_REPO: "https://github.com/itznao/mida",
 
   GROUPS,
