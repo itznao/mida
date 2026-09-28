@@ -30,17 +30,21 @@ const GROUPS = [
       { id: "dim", name: "DIM", url: "https://app.destinyitemmanager.com" },
       { id: "light", name: "light.gg", url: "https://light.gg" },
       { id: "braytech", name: "Braytech", url: "https://bray.tech/" },
-      { id: "d2reference", name: "D2ReferenceList", url: "https://d2referencelist.org/" },
-      {
-        id: "godroll",
-        name: "godroll.tv",
-        url: "https://godroll.tv/",
-      },
-      { id: "armor", name: "D2ArmorPicker", url: "https://d2armorpicker.com" },
       {
         id: "d2report",
         name: "Destiny Report",
         url: "https://destiny.report/",
+      },
+      {
+        id: "godroll",
+        name: "Godroll.tv",
+        url: "https://godroll.tv/",
+      },
+      { id: "armor", name: "D2ArmorPicker", url: "https://d2armorpicker.com" },
+      {
+        id: "d2reference",
+        name: "D2 Reference List",
+        url: "https://d2referencelist.org/",
       },
     ],
   },
