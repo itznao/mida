@@ -30,6 +30,11 @@ const GROUPS = [
       { id: "dim", name: "DIM", url: "https://app.destinyitemmanager.com" },
       { id: "light", name: "light.gg", url: "https://light.gg" },
       { id: "braytech", name: "Braytech", url: "https://bray.tech/" },
+      {
+        id: "godroll",
+        name: "godroll.tv",
+        url: "https://godroll.tv/",
+      },
       { id: "armor", name: "D2ArmorPicker", url: "https://d2armorpicker.com" },
       {
         id: "d2report",
@@ -50,6 +55,11 @@ const GROUPS = [
         id: "mobalytics",
         name: "Mobalytics",
         url: "https://mobalytics.gg/destiny-2",
+      },
+      {
+        id: "buildbuddy",
+        name: "D2 Build Buddy",
+        url: "https://d2buildbuddy.com/",
       },
     ],
   },
