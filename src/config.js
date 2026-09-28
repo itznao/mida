@@ -37,14 +37,14 @@ const GROUPS = [
         url: "https://d2buildbuddy.com/",
       },
       {
-        id: "godroll",
-        name: "godroll.tv",
-        url: "https://godroll.tv/",
-      },
-      {
         id: "d2report",
         name: "Destiny Report",
         url: "https://destiny.report/",
+      },
+      {
+        id: "godroll",
+        name: "godroll.tv",
+        url: "https://godroll.tv/",
       },
     ],
   },
