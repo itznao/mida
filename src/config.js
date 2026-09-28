@@ -32,6 +32,16 @@ const GROUPS = [
       { id: "braytech", name: "Braytech", url: "https://bray.tech/" },
       { id: "armor", name: "D2ArmorPicker", url: "https://d2armorpicker.com" },
       {
+        id: "buildbuddy",
+        name: "D2 Build Buddy",
+        url: "https://d2buildbuddy.com/",
+      },
+      {
+        id: "godroll",
+        name: "godroll.tv",
+        url: "https://godroll.tv/",
+      },
+      {
         id: "d2report",
         name: "Destiny Report",
         url: "https://destiny.report/",
