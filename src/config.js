@@ -30,6 +30,7 @@ const GROUPS = [
       { id: "dim", name: "DIM", url: "https://app.destinyitemmanager.com" },
       { id: "light", name: "light.gg", url: "https://light.gg" },
       { id: "braytech", name: "Braytech", url: "https://bray.tech/" },
+      { id: "d2reference", name: "D2ReferenceList", url: "https://d2referencelist.org/" },
       {
         id: "godroll",
         name: "godroll.tv",
@@ -145,7 +146,7 @@ const GROUPS = [
 ];
 
 module.exports = {
-  VERSION: "1.0.6",
+  VERSION: "1.0.7",
   GITHUB_REPO: "https://github.com/itznao/mida",
 
   GROUPS,
