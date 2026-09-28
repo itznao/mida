@@ -1,5 +1,5 @@
 const path = require("path");
-const { BrowserWindow, ipcMain } = require("electron");
+const { BrowserWindow, ipcMain, shell } = require("electron");
 const {
   SIDEBAR_WIDTH,
   TITLEBAR_HEIGHT,
@@ -28,6 +28,11 @@ function createWindow() {
     },
   });
   win.once("ready-to-show", () => win.show());
+
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    if (/^https:/.test(url)) shell.openExternal(url);
+    return { action: "deny" };
+  });
 
   const actions = {
     minimize: () => win.minimize(),
