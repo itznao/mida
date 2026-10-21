@@ -3,18 +3,20 @@
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/itznao/mida/total)
 ![GitHub Release](https://img.shields.io/github/v/release/itznao/mida)
 ![Discord](https://img.shields.io/badge/Discord%20Support-8A2BE2?style=flat&logo=discord&logoColor=ffffff&link=https%3A%2F%2Fdiscord.gg%2F7gSFp628Sm)
-[![AI-DECLARATION: assist](https://img.shields.io/badge/䷼%20AI--DECLARATION-assist-fef9c3?labelColor=fef9c3)](https://ai-declaration.md)
 
 The Destiny 2 Multi-Tool. MIDA puts Bungie.net, DIM, light.gg, raid.report and other Destiny 2 sites in one window, with one shared Bungie.net sign-in.
 
 ## Features
 
-- All your Destiny 2 sites in one sidebar.
+- All the best Destiny 2 sites in one sidebar.
 - Sign in to Bungie.net once. MIDA keeps only the Bungie.net login and deletes Steam, Xbox and PlayStation sign-in cookies.
 - **F2** shows or hides MIDA over the game.
-- **Esc** goes back a page. **F5** or **Ctrl+R** reloads.
-- Hidden sites close after 30 seconds to save memory.
-- Shows a message when a new version is out.
+- MIDA has auto apdates
+- Customisable your tabs
+
+## Donations
+
+MIDA is completely free for anyone. If you have some spare change or really love MIDA please consider donating to out Ko-fi. Thank you <3
 
 ## Screenshots
 ![image1](image1.png)
@@ -33,15 +35,10 @@ You need [Node.js](https://nodejs.org/).
 
 ```bash
 npm install
-npm run dist
+npm run dist:win
 ```
 
 ## Where MIDA saves data
 
-Everything is in `%LOCALAPPDATA%\MIDA`. **Sign Out** deletes the saved site data. Uninstalling does not delete this folder.
-
-## License
-
-MIDA is **source-available, not open source**. You may read the code, build it and use it for yourself. You may **not** share, redistribute or publish MIDA or a changed version of it. See [LICENSE](LICENSE).
-
-To contribute, see [CONTRIBUTING.md](CONTRIBUTING.md).
+Everything is in `%LOCALAPPDATA%\MIDA`. Uninstalling does not delete this folder.
+Edit the `sites.json` file and change the version to `99.99.99` to ensure updates don't override your custom tabs.
