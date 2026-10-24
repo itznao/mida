@@ -6,6 +6,8 @@
 
 ### ‼️ONLY DOWNLOAD MIDA FROM THIS REPO. WE HAVE DESCOVERED WEBSITES HOSTING MALICOUS CODE PRETENDING TO BE MIDA‼️
 
+---
+
 The Destiny 2 Multi-Tool. MIDA puts Bungie.net, DIM, light.gg, raid.report and other Destiny 2 sites in one window, with one shared Bungie.net sign-in.
 
 ## Features
