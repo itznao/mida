@@ -13,14 +13,16 @@ The Destiny 2 Multi-Tool. MIDA puts Bungie.net, DIM, light.gg, raid.report and o
 ## Features
 
 - All the best Destiny 2 sites in one sidebar.
-- Sign in to Bungie.net once. MIDA keeps only the Bungie.net login and deletes Steam, Xbox and PlayStation sign-in cookies.
+- Sign in to Bungie.net once. Everything else syncs.
 - **F2** shows or hides MIDA over the game.
-- MIDA has auto apdates
-- Customisable your tabs
+- **CTRL+S** toggles the sidebar.
+- Customisable your tabs.
+- Pin your favourite sites.
+- Auto updates.
 
 ## Donations
 
-MIDA is completely free for anyone. If you have some spare change or really love MIDA please consider donating to out Ko-fi. Thank you <3
+MIDA is completely free for anyone. If you have some spare change or really love MIDA please consider donating. Thank you <3
 
 ## Screenshots
 ![image1](image1.png)
