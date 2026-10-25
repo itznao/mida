@@ -80,8 +80,6 @@ app.whenReady().then(async () => {
     contents.on("did-create-window", (win) => win.removeMenu())
   })
 
-  ipcMain.handle("app:get-version", () => app.getVersion());
-
   ipcMain.handle("sites:get", async (_) => {
     const sites = await fetchSites()
     return sites
