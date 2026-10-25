@@ -41,11 +41,12 @@ function App() {
     ) {
       localStorage.setItem("previousVersion", appVersion);
 
+      return;
       return {
         title: "NOT USED",
         description: "NOT YET USED WILL BE USED IN NEXT UPDATE",
         hueRotate: 0
-      };
+      };""
     }
 
     localStorage.setItem("previousVersion", appVersion);
