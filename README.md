@@ -39,7 +39,7 @@ You need [Node.js](https://nodejs.org/).
 
 ```bash
 npm install
-npm run dist:win
+npm run build:win
 ```
 
 ## Where MIDA saves data
