@@ -4,3 +4,4 @@ relative_links:
   enabled: true
 include:
   - README.md
+theme: Slate
