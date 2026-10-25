@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState } from "react"
 
 export function SettingsPage() {
-  const [theme, setTheme] = useState('default')
-  const [focusKey, setFocusKey] = useState('F2')
+  const [theme, setTheme] = useState("default")
+  const [focusKey, setFocusKey] = useState("F2")
 
   return (
     <div className="relative w-full h-full flex flex-col p-4">

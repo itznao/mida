@@ -2,7 +2,7 @@
   "name": "mida",
   "productName": "MIDA",
   "description": "The Destiny 2 Multi-Tool",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "./out/main/index.js",
   "author": "iTz_Nao",
   "scripts": {

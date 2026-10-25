@@ -1,17 +1,25 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --color-destiny-main-text: #f9f9fb;
   --color-destiny-backup-text: #b8b3b5;
   --color-destiny-background-average: #3c3f45;
+  --font-destiny-icons: "DestinyIcons";
+  --font-default: "RemusVariableVF";
 }
 
 @font-face {
-  font-family: 'RemusVariableVF';
-  src: url('/fonts/RemusVariableVF.woff2') format('woff2');
+  font-family: "RemusVariableVF";
+  src: url("/fonts/RemusVariableVF.woff2") format("woff2");
   font-weight: 100 900;
   font-stretch: 75% 125%;
   font-style: oblique 0deg 20deg;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DestinyIcons";
+  src: url("/fonts/DestinyIcons.woff2") format("woff2");
   font-display: swap;
 }
 
@@ -52,7 +60,7 @@
 body {
   min-width: 100vw;
   min-height: 100vh;
-  font-family: 'RemusVariableVF';
+  font-family: "RemusVariableVF";
   background-color: #000000;
 }
 
@@ -60,33 +68,39 @@ body {
   height: 100vh;
   display: grid;
 
-  background-image: url('/images/bg.png');
+  background-image: url("/images/bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
   grid-template-areas:
-    'titlebar titlebar'
-    'sidebar content';
+    "titlebar titlebar"
+    "sidebar content";
 
   grid-template-columns: 300px 1fr;
   grid-template-rows: 50px minmax(0, 1fr);
+
+  transition: grid-template-columns 300ms ease;
 }
 
-.titlebar {
+.main-grid.closed {
+  grid-template-columns: 0 1fr;
+}
+
+#titlebar {
   grid-area: titlebar;
   -webkit-app-region: drag;
 }
 
-.titlebar button,
-.titlebar img {
+#titlebar button,
+#titlebar img {
   -webkit-app-region: no-drag;
 }
 
-.sidebar {
+#sidebar {
   grid-area: sidebar;
 }
 
-.content {
+#content {
   grid-area: content;
 }

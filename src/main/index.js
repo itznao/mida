@@ -1,10 +1,11 @@
-import { app, shell, BrowserWindow, ipcMain, session, dialog, globalShortcut } from 'electron'
-import { join } from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import { autoUpdater } from 'electron-updater'
-import icon from '../../resources/icon.png?asset'
-import { fetchSites } from './fetchSites'
-const koffi = require('koffi')
+import { app, shell, BrowserWindow, ipcMain, dialog } from "electron"
+import { join } from "path"
+import { electronApp, optimizer, is } from "@electron-toolkit/utils"
+import { autoUpdater } from "electron-updater"
+import icon from "../../resources/icon.png?asset"
+import { fetchSites } from "./fetchSites"
+import { updateSite } from "./updateSite"
+import { setupHotkeys } from "./hotkeys"
 
 function createWindow() {
   // Create the browser window.
@@ -18,50 +19,31 @@ function createWindow() {
     icon,
     frame: false,
     webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
+      partition: "persist:bungie",
+      preload: join(__dirname, "../preload/index.js"),
       true: false,
       webviewTag: true
     }
   })
 
-  mainWindow.on('ready-to-show', () => {
+  mainWindow.on("ready-to-show", () => {
     mainWindow.show()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
-    return { action: 'deny' }
+    return { action: "deny" }
   })
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
-  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+  if (is.dev && process.env["ELECTRON_RENDERER_URL"]) {
+    mainWindow.loadURL(process.env["ELECTRON_RENDERER_URL"])
   } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+    mainWindow.loadFile(join(__dirname, "../renderer/index.html"))
   }
 
   return mainWindow
-}
-
-// this is genuinely magic idfk how this works but it does so yeah
-const user32 = koffi.load('user32.dll')
-const FindWindowW = user32.func('void* __stdcall FindWindowW(str16, str16)')
-const ShowWindow = user32.func('bool __stdcall ShowWindow(void*, int)')
-
-// 5 does something different than 8, but 5 almost works but doesnt work not sure why
-const setTaskbar = show => ShowWindow(FindWindowW('Shell_TrayWnd', null), show ? 8 : 0)
-
-function setupHotkey(win) {
-  win.on('blur', () => setTaskbar(true))
-  app.on('will-quit', () => setTaskbar(true))
-
-  globalShortcut.register('F2', () => {
-    if (win.isFocused()) return win.hide()
-    win.show()
-    win.focus()
-    setTaskbar(false)
-  })
 }
 
 // This method will be called when Electron has finished
@@ -69,16 +51,16 @@ function setupHotkey(win) {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(async () => {
   // Set app user model id for windows
-  electronApp.setAppUserModelId('itznao.mida')
+  electronApp.setAppUserModelId("itznao.mida")
 
   try {
     const result = await autoUpdater.checkForUpdates()
 
     if (result?.isUpdateAvailable) {
-      autoUpdater.on('update-downloaded', () => autoUpdater.quitAndInstall())
+      autoUpdater.on("update-downloaded", () => autoUpdater.quitAndInstall())
     }
   } catch (error) {
-    dialog.showErrorBox('Update Failed', error.message)
+    dialog.showErrorBox("Update Failed", error.message)
     app.quit()
     return
   }
@@ -86,95 +68,68 @@ app.whenReady().then(async () => {
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
-  app.on('browser-window-created', (_, window) => {
+  app.on("browser-window-created", (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  app.on('web-contents-created', (_, contents) => {
+  app.on("web-contents-created", (_, contents) => {
     contents.setWindowOpenHandler(() => ({
-      action: 'allow',
+      action: "allow",
       overrideBrowserWindowOptions: { icon }
     }))
-    contents.on('did-create-window', (win) => win.removeMenu())
+    contents.on("did-create-window", (win) => win.removeMenu())
   })
 
-  ipcMain.handle('sites:get', async () => {
-    const { version, ...sites } = await fetchSites()
+  ipcMain.handle("sites:get", async (_) => {
+    const sites = await fetchSites()
     return sites
   })
 
-  ipcMain.on('window:minimize', () => {
+  ipcMain.handle("site:update", async (_, id, changes) => {
+    const sites = await updateSite(id, changes)
+    return sites
+  })
+
+  ipcMain.on("window:minimize", (_) => {
     BrowserWindow.getFocusedWindow()?.minimize()
   })
 
-  ipcMain.on('window:maximize', () => {
+  ipcMain.on("window:maximize", (_) => {
     const win = BrowserWindow.getFocusedWindow()
     if (!win) return
 
     win.isMaximized() ? win.unmaximize() : win.maximize()
   })
 
-  ipcMain.on('window:close', () => {
+  ipcMain.on("window:close", (_) => {
     BrowserWindow.getFocusedWindow()?.close()
   })
 
-  ipcMain.handle('open-external', async (_, url) => {
-    if (typeof url === 'string' && url.startsWith('https://')) {
+  ipcMain.handle("open-external", async (_, url) => {
+    if (typeof url === "string" && url.startsWith("https://")) {
       await shell.openExternal(url)
     }
   })
 
-  let cleared = false
-
-  app.on('before-quit', async (event) => {
-    globalShortcut.unregister('F2')
-    if (cleared) {
-      return
-    }
-
-    event.preventDefault()
-
-    await session.fromPartition('persist:bungie').clearData({
-      excludeOrigins: ['https://www.bungie.net']
-    })
-    cleared = true
-    app.quit()
-  })
-
-  await session.fromPartition('persist:bungie').clearData({
-    excludeOrigins: ['https://www.bungie.net']
-  })
-
-  const ses = session.fromPartition('persist:bungie')
-
-  ses.cookies.on('changed', (_, c, __, removed) => {
-    if (removed || !c.session || !c.domain?.endsWith('bungie.net')) return
-    ses.cookies.set({
-      ...c,
-      url: 'https://www.bungie.net',
-      expirationDate: Date.now() / 1000 + 30 * 24 * 60 * 60
-    })
-  })
-
   const mainWindow = createWindow()
 
-  setupHotkey(mainWindow)
+  setupHotkeys(mainWindow)
 
-  app.on('activate', function () {
-    // On macOS it's common to re-create a window in the app when the
+  app.on("activate", function () {
+    // On macOS it"s common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 })
 
-// Quit when all windows are closed, except on macOS. There, it's common
+// Quit when all windows are closed, except on macOS. There, it"s common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
     app.quit()
   }
 })
 
-// In this file you can include the rest of your app's specific main process
+// In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
