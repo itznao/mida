@@ -22,8 +22,9 @@ function App() {
   const [infoCard, setInfoCard] = useState(() => {
     const previousVersion = semver.coerce(localStorage.getItem("previousVersion"));
 
-    if (!localStorage.getItem("hideWelcomeMessage") === "true") {
-      localStorage.setItem("hideWelcomeMessage", "true");
+    if (
+      localStorage.getItem("hideWelcomeMessage") !== true) {
+      localStorage.setItem("hideWelcomeMessage", true);
       localStorage.setItem("previousVersion", appVersion);
 
       return {
@@ -54,7 +55,7 @@ function App() {
   });
 
   window.api.closeInfoCard(() => {
-    localStorage.setItem("hideWelcomeMessage", "true");
+    localStorage.setItem("hideWelcomeMessage", true);
     setInfoCard(null);
   })
 
