@@ -5,7 +5,7 @@ export function setupKeybinds(win) {
   toggleFocused(win)
 
   localKeybind(win, 'CTRL+S', () => win.webContents.send('hotkey:toggleSidebar'))
-  localKeybind(win, 'ESC', () => win.webContents.send('hotkey:closeInfoCard'))
+  localKeybind(win, 'ESC', () => win.webContents.send('infoCard:close'))
 }
 
 function localKeybind(win, key, callback) {

@@ -117,6 +117,7 @@ categories:
         url: https://docs.google.com/spreadsheets/d/1WaxvbLx7UoSZaBqdFr1u32F2uWVLo-CJunJB4nlGUE4
         image: images/destinydatacompendium.png
         forceSquare: true
+        devHighlight: true
 
       - id: destiny2engameanalysis
         text: Destiny 2 Endgame Analysis

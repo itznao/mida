@@ -14,5 +14,8 @@ contextBridge.exposeInMainWorld('api', {
   openExternal: (url) => ipcRenderer.invoke('open-external', url),
 
   toggleSidebarHotkey: (callback) => ipcRenderer.on('hotkey:toggleSidebar', callback),
-  closeInfoCard: (callback) => ipcRenderer.on('hotkey:closeInfoCard', callback)
+  
+  appReady: () => ipcRenderer.send('app:ready'),
+  sendInfoCard: (callback) => ipcRenderer.on('infoCard:send', (_, card) => callback(card)),
+  closeInfoCard: (callback) => ipcRenderer.on('infoCard:close', callback)
 })

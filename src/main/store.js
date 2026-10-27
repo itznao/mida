@@ -1,6 +1,6 @@
 import { app } from 'electron'
 import { join } from 'path'
-import { readFileSync, existsSync, copyFileSync, renameSync, writeFileSync } from 'fs'
+import { readFileSync, existsSync, renameSync, writeFileSync, copyFileSync  } from 'fs'
 import YAML from 'yaml'
 
 import appsPath from '../../resources/apps.yaml?asset'
@@ -13,6 +13,7 @@ export function ensureUserData() {
   if (!existsSync(userDataPath)) {
     console.log('userData does not exist, creating file.')
     copyFileSync(userDataDefaultPath, userDataPath)
+    console.log('Created userData file.')
   }
 }
 

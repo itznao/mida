@@ -1,13 +1,11 @@
 schema: 1
 
-currentVersion: 2.1.1
-
 settings:
   focusBind: F2
-  sidebarBind: Ctrl+S
+  sidebarBind: Ctrl+s
 
 flags:
-  firstTimeLaunch: true
+  lastVersionOpened: 0.0.0
   sidebarOpen: true
 
 # How to use pinnedApps

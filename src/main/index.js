@@ -5,6 +5,8 @@ import { autoUpdater } from 'electron-updater'
 import icon from '../../resources/icon.png?asset'
 import { loadApps, togglePin, loadUserData, saveUserData } from './store'
 import { setupKeybinds } from './keybinds'
+import { readdirSync, existsSync } from 'fs'
+import { welcomeCard, updateCard } from './cards'
 
 function createWindow() {
   // Create the browser window.
@@ -51,6 +53,17 @@ function createWindow() {
 app.whenReady().then(async () => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('itznao.mida')
+
+  const partitionsPath = join(app.getPath('userData'), 'Partitions')
+  const hasUsedMidaBefore = existsSync(partitionsPath) && readdirSync(partitionsPath).length !== 0
+
+  const lastVersion = loadUserData().flags.lastVersionOpened
+  const justUpdated = lastVersion !== app.getVersion()
+
+  if (justUpdated) {
+    console.log(`Updated from ${lastVersion} to ${app.getVersion()}.`)
+    saveUserData(['flags', 'lastVersionOpened'], app.getVersion())
+  }
 
   try {
     const result = await autoUpdater.checkForUpdates()
@@ -130,6 +143,14 @@ app.whenReady().then(async () => {
   const mainWindow = createWindow()
 
   setupKeybinds(mainWindow)
+
+  ipcMain.once('app:ready', () => {
+    if (!hasUsedMidaBefore) {
+      mainWindow.webContents.send('infoCard:send', welcomeCard)
+    } else if (justUpdated) {
+      mainWindow.webContents.send('infoCard:send', updateCard)
+    }
+  })
 
   app.on('activate', function () {
     // On macOS it"s common to re-create a window in the app when the
