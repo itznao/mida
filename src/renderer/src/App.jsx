@@ -52,6 +52,8 @@ function App() {
       window.api.saveUserData(['flags', 'firstTimeLaunch'], false)
       console.log('Closed info card.')
     })
+
+        window.api.toggleSidebarHotkey(() => setSidebarIsOpen((open) => !open))
   }, [])
 
   return (
