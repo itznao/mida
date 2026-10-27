@@ -1,11 +1,10 @@
-import { SettingsPage } from "./SettingsPage"
+import { SettingsPage } from './SettingsPage'
 
 export function Content({ url }) {
-
-  if (url === "home") {
+  if (url === 'home') {
     return <HomePage />
   }
-  if (url === "settings") {
+  if (url === 'settings') {
     return <SettingsPage />
   }
 
@@ -13,8 +12,8 @@ export function Content({ url }) {
     <webview
       id="content"
       src={url}
-      style={{ width: "100%", height: "100%" }}
-      partition="persist:bungie"
+      style={{ width: '100%', height: '100%' }}
+      partition="persist:midaContentSession"
       allowpopups="true"
     />
   )

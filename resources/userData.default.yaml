@@ -1,0 +1,86 @@
+schema: 1
+
+currentVersion: 2.1.1
+
+settings:
+  focusBind: F2
+  sidebarBind: Ctrl+S
+
+flags:
+  firstTimeLaunch: true
+  sidebarOpen: true
+
+# How to use pinnedApps
+# ------------------------------------------------------------
+# Apps placed under this key are pinned, in defined order.
+# ------------------------------------------------------------
+# EXAMPLE ::
+#
+# pinnedApps:
+#   - dim
+#   - raidreport
+#
+# ------------------------------------------------------------
+pinnedApps: []
+
+# How to use categoryOrder
+# ------------------------------------------------------------
+# Categories placed under this key change the order to appear
+# above the none-defined categories.
+# ------------------------------------------------------------
+# EXAMPLE ::
+#
+# categoryOrder:
+#   - playerlookup
+#   - spreadsheets
+#
+# ------------------------------------------------------------
+categoryOrder: []
+
+# How to use appOrder
+# ------------------------------------------------------------
+# Apps placed under this key change the order to appear
+# above the none-defined apps, this does not affect the order
+# of the categories themselves, so it does not matter the
+# order that you define these in.
+# ------------------------------------------------------------
+# EXAMPLE ::
+#
+# appOrder:
+#   tools:
+#     - lightgg
+#     - d2armorpicker
+#   playerlookup:
+#     - raidreport
+#
+# ------------------------------------------------------------
+appOrder: {}
+
+# How to use customCategories
+# ------------------------------------------------------------
+# You can define custom categories here, follow the example.
+# ------------------------------------------------------------
+# EXAMPLE ::
+#
+# customCategories:
+#   clanstuff:
+#     text: Clan Stuff
+#
+# ------------------------------------------------------------
+customCategories: {}
+
+# How to use customApps
+# ------------------------------------------------------------
+# You can define custom apps here, follow the example.
+# ------------------------------------------------------------
+# EXAMPLE ::
+#
+# customApps:
+#   destinynews
+#     category: clanstuff
+#     text: Destiny News
+#     url: https://www.bungie.net/7/en/News/Destiny
+#     image: images/destinynews.png
+#
+# ------------------------------------------------------------
+customApps: {}

@@ -1,7 +1,7 @@
-export function TabButton({ image, text, onClick, onContextMenu, forceSquare, favourite }) {
+export function TabButton({ image, text, onClick, onContextMenu, forceSquare, pinned }) {
   return (
     <div
-      className={`relative w-60 h-20 border ${favourite ? "border-amber-300/50 from-amber-300/55 hover:from-amber-300/80 active:to-amber-300/20 active:from-amber-300/90" : "border-destiny-backup-text/50 from-destiny-backup-text/55 hover:from-destiny-backup-text/80 active:to-destiny-backup-text/20 active:from-destiny-backup-text/90"} flex flex-row items-center pl-2 bg-gradient-to-l to-transparent transition-colors duration-200 cursor-pointer`}
+      className={`relative w-60 h-20 border ${pinned ? 'border-amber-300/50 from-amber-300/55 hover:from-amber-300/80 active:to-amber-300/20 active:from-amber-300/90' : 'border-destiny-backup-text/50 from-destiny-backup-text/55 hover:from-destiny-backup-text/80 active:to-destiny-backup-text/20 active:from-destiny-backup-text/90'} flex flex-row items-center pl-2 bg-gradient-to-l to-transparent transition-colors duration-200 cursor-pointer`}
       onClick={onClick}
       onContextMenu={onContextMenu}
     >
@@ -9,17 +9,25 @@ export function TabButton({ image, text, onClick, onContextMenu, forceSquare, fa
         <img
           src={image}
           alt=""
-          className={`w-15 h-15 object-contain shrink-0 ${forceSquare ? "" : "rounded-full"}`}
+          className={`w-15 h-15 object-contain shrink-0 ${forceSquare ? '' : 'rounded-full'}`}
         />
       ) : (
-        <img src={"/images/icon.png"} alt="" className="w-15 h-15" />
+        <img src={'/images/icon.png'} alt="" className="w-15 h-15" />
       )}
       <span className="pl-4 text-md font-bold text-destiny-main-text">{text}</span>
 
-      <div className={`absolute -left-px -top-px border-t border-l ${favourite ? "border-amber-300/25" : "border-destiny-main-text/25"} w-3 h-3`}></div>
-      <div className={`absolute -right-px -top-px border-t border-r ${favourite ? "border-amber-300/25" : "border-destiny-main-text/25"} w-3 h-3`}></div>
-      <div className={`absolute -left-px -bottom-px border-b border-l ${favourite ? "border-amber-300/25" : "border-destiny-main-text/25"} w-3 h-3`}></div>
-      <div className={`absolute -right-px -bottom-px border-b border-r ${favourite ? "border-amber-300/25" : "border-destiny-main-text/25"} w-3 h-3`}></div>
+      <div
+        className={`absolute -left-px -top-px border-t border-l ${pinned ? 'border-amber-300/25' : 'border-destiny-main-text/25'} w-3 h-3`}
+      ></div>
+      <div
+        className={`absolute -right-px -top-px border-t border-r ${pinned ? 'border-amber-300/25' : 'border-destiny-main-text/25'} w-3 h-3`}
+      ></div>
+      <div
+        className={`absolute -left-px -bottom-px border-b border-l ${pinned ? 'border-amber-300/25' : 'border-destiny-main-text/25'} w-3 h-3`}
+      ></div>
+      <div
+        className={`absolute -right-px -bottom-px border-b border-r ${pinned ? 'border-amber-300/25' : 'border-destiny-main-text/25'} w-3 h-3`}
+      ></div>
     </div>
   )
 }
@@ -41,7 +49,11 @@ export function TabSeperator({ text, length, maxLength }) {
       <div className="flex flex-col w-full">
         <div className="flex flex-row w-full justify-between">
           <span className="text-destiny-backup-text text-lg">{text}</span>
-          <span className="text-destiny-backup-text text-lg">{length}<b>/</b>{maxLength}</span>
+          <span className="text-destiny-backup-text text-lg">
+            {length}
+            <b>/</b>
+            {maxLength}
+          </span>
         </div>
         <div className="border-b-2 border-destiny-backup-text flex-1"></div>
       </div>
