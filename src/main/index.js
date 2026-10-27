@@ -4,7 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { autoUpdater } from 'electron-updater'
 import icon from '../../resources/icon.png?asset'
 import { loadApps, togglePin, loadUserData, saveUserData } from './store'
-import { setupHotkeys } from './hotkeys'
+import { setupKeybinds } from './keybinds'
 
 function createWindow() {
   // Create the browser window.
@@ -129,7 +129,7 @@ app.whenReady().then(async () => {
 
   const mainWindow = createWindow()
 
-  setupHotkeys(mainWindow)
+  setupKeybinds(mainWindow)
 
   app.on('activate', function () {
     // On macOS it"s common to re-create a window in the app when the

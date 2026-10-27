@@ -1,10 +1,16 @@
 import { app, globalShortcut } from 'electron'
 import koffi from 'koffi'
 
-export function setupHotkeys(win) {
+export function setupKeybinds(win) {
   toggleFocused(win)
-  toggleSidebar(win)
-  closeInfoCard(win)
+
+  localKeybind(win, 'CTRL+S', () => win.webContents.send('hotkey:toggleSidebar'))
+  localKeybind(win, 'ESC', () => win.webContents.send('hotkey:closeInfoCard'))
+}
+
+function localKeybind(win, key, callback) {
+  win.on('focus', () => globalShortcut.register(key, callback))
+  win.on('blur', () => globalShortcut.unregister(key))
 }
 
 function toggleFocused(win) {
@@ -27,19 +33,5 @@ function toggleFocused(win) {
     win.focus()
 
     setTaskbar(false)
-  })
-}
-
-function toggleSidebar(win) {
-  globalShortcut.register('CTRL+S', () => {
-    console.log('ToggleSidebar key detected.')
-    win.webContents.send('hotkey:toggleSidebar')
-  })
-}
-
-function closeInfoCard(win) {
-  globalShortcut.register('ESC', () => {
-    console.log('closeInfoCard key detected.')
-    win.webContents.send('hotkey:closeInfoCard')
   })
 }

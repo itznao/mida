@@ -53,7 +53,7 @@ function App() {
       console.log('Closed info card.')
     })
 
-        window.api.toggleSidebarHotkey(() => setSidebarIsOpen((open) => !open))
+    window.api.toggleSidebarHotkey(() => setSidebarIsOpen((open) => !open))
   }, [])
 
   return (
