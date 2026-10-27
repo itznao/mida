@@ -118,10 +118,15 @@ categories:
         image: images/destinydatacompendium.png
         forceSquare: true
 
+      - id: destiny2engameanalysis
+        text: Destiny 2 Endgame Analysis
+        url: https://docs.google.com/spreadsheets/d/1JM-0SlxVDAi-C6rGVlLxa-J1WGewEeL8Qvq4htWZHhY
+        image: images/aegis.png
+
       - id: aegisdamagespreadsheet
         text: Aegis Damage Spreadsheet
         url: https://docs.google.com/spreadsheets/d/1_5wtBjRYHHxuF4oJKDb_iOGZs-wTkzB6RYbnyNLbuz4
-        image: images/aegisdamagespreadsheet.png
+        image: images/aegis.png
 
       - id: courtsdamagebuffsdebuffs
         text: Court's Damage Buffs/Debuffs
