@@ -21,7 +21,7 @@ export function InfoCard({ title, description, hueRotate, onClose }) {
           </div>
           <div className="bg-black/80 h-full"></div>
         </div>
-        <div className="w-full h-8 bg-black/98 pl-1/3 grid grid-rows-1 grid-cols-3 grid-cols-[1fr_1.8fr_1fr]">
+        <div className="w-full h-8 bg-black/98 pl-1/3 grid grid-rows-1 grid-cols-3 grid-cols-[1fr_1.8fr_1fr] items-center">
           <div></div>
           <div>
             <button onClick={onClose} className="text-white pl-4 cursor-pointer">

@@ -47,7 +47,7 @@ export function Titlebar({ setCurrentUrl, setSidebarIsOpen, sidebarIsOpen }) {
           <img
             src={sidebarIsOpen ? 'images/leftpanelclosed.svg' : 'images/leftpanelopen.svg'}
             alt="x"
-            className="w-4.5 h-4.5"
+            className="w-4.5 h-4.5 translate-x-0.5"
           />
         </button>
       </div>
