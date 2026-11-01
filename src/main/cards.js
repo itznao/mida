@@ -7,7 +7,7 @@ export const welcomeCard = {
 export const updateCard = {
   title: 'Bungie Foundation Rewards',
   description: 'Hey guys!\n\nYou might have seen that Bungie has released their fundraiser, if you able to dontate to the Bungie Foundation please do, it goes to a good cause and you get some cool rewards!\n\n<a style="color: #60a5fa" href="https://tiltify.com/@itz-nao/the-mida-collection" target="_blank" rel="noopener noreferrer">https://tiltify.com/@itz-nao/the-mida-collection</a>',
-  image: "/images/donate.png",
+  image: "./images/donate.png",
   hueRotate: 0,
   ingoreOneTime: true
 }
