@@ -147,7 +147,7 @@ app.whenReady().then(async () => {
   ipcMain.once('app:ready', () => {
     if (!hasUsedMidaBefore) {
       mainWindow.webContents.send('infoCard:send', welcomeCard)
-    } else if (justUpdated) {
+    } else if (justUpdated || updateCard.ingoreOneTime == true) {
       mainWindow.webContents.send('infoCard:send', updateCard)
     }
   })

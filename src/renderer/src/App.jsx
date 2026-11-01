@@ -9,15 +9,21 @@ function App() {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(true)
   const [infoCard, setInfoCard] = useState(null)
 
-  const showInfoCard = (title, description, hueRotate = 0) => {
+  const showInfoCard = (card) => {
     console.log('Sending info card.')
-    setInfoCard({ title, description, hueRotate })
+    setInfoCard({
+      title: card.title,
+      description: card.description,
+      image: card.image || '/images/popup.png',
+      hueRotate: card.hueRotate ?? 0,
+      ingoreOneTime: card.ingoreOneTime ?? false
+    })
     console.log('Sent info card.')
   }
 
   useEffect(() => {
     window.api.sendInfoCard((card) => {
-      showInfoCard(card.title, card.description, card.hueRotate)
+      showInfoCard(card)
     })
 
     window.api.closeInfoCard(() => {
