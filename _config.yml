@@ -1,3 +1,5 @@
+url: "https://mida.itznao.com"
+baseurl: ""
 plugins:
   - jekyll-relative-links
 relative_links:
